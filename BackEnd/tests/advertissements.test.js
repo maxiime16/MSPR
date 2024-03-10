@@ -47,7 +47,7 @@ describe("Test de la route pour récupérer les annonce", () => {
       callback(null, mockAdvertissements);
     });
 
-    const response = await request(app).get("/api/advertisements/all");
+    const response = await request(app).get("/api/advertisements");
 
     expect(response.status).toBe(200);
     expect(response.type).toMatch(/json/);
@@ -61,7 +61,7 @@ describe("Test de la route pour récupérer les annonce", () => {
       );
     });
 
-    const response = await request(app).get("/api/advertisements/all");
+    const response = await request(app).get("/api/advertisements");
 
     expect(response.status).toBe(500);
     expect(response.type).toMatch(/json/);
