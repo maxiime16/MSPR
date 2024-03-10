@@ -3,13 +3,12 @@ const router = express.Router();
 
 module.exports = (db) => {
   // Récupérer toutes les sous-catégories
-  router.get("/sub_category", (_, res) => {
+  router.get("/", (_, res) => {
     db.all("SELECT * FROM sub_category", (err, rows) => {
       if (err) {
-        console.error(err);
         res
           .status(500)
-          .json("Erreur lors de la récupération des sous-catégories.");
+          .json({"error": "Erreur lors de la récupération des sous-catégories."});
       } else {
         res.json(rows);
       }
@@ -25,7 +24,6 @@ module.exports = (db) => {
       [sub_categId],
       (err, row) => {
         if (err) {
-          console.error(err);
           res
             .status(500)
             .json(
@@ -53,7 +51,6 @@ module.exports = (db) => {
       [categoryId],
       (err, rows) => {
         if (err) {
-          console.error(err);
           res
             .status(500)
             .json(
@@ -76,7 +73,6 @@ module.exports = (db) => {
       [categoryId, subCategoryId],
       (err, row) => {
         if (err) {
-          console.error(err);
           res
             .status(500)
             .json(

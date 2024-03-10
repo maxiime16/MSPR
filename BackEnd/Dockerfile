@@ -19,13 +19,3 @@ EXPOSE 3001
 
 # Commande pour démarrer l'application
 CMD ["node", "server.js"]
-
-
-
-
-
-
-
-
-
-

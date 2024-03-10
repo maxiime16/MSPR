@@ -27,7 +27,7 @@ describe("Test pour récupérer toutes les catégories", () => {
       callback(null, mockSub_category);
     });
 
-    const response = await request(app).get("/api/sub_category/all");
+    const response = await request(app).get("/api/sub_category");
 
     expect(response.status).toBe(200);
     expect(response.type).toMatch(/json/);
@@ -40,7 +40,7 @@ describe("Test pour récupérer toutes les catégories", () => {
       callback("Erreur lors de la récupération des sous-catégories.");
     });
 
-    const response = await request(app).get("/api/sub_category/all");
+    const response = await request(app).get("/api/sub_category");
 
     expect(response.status).toBe(500);
     expect(response.type).toMatch(/json/);
@@ -49,3 +49,4 @@ describe("Test pour récupérer toutes les catégories", () => {
       );
   });
 });
+

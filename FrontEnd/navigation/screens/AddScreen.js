@@ -52,6 +52,7 @@ export default function AddScreen({ navigation }) {
   
   const [formComplete, setFormComplete] = useState(false);
   const [submitButtonClicked, setSubmitButtonClicked] = useState(false);
+  const [showErrorState, setShowErrorState] = useState(false)
 
   const titleInputRef = useRef(null);
   const descriptionInputRef = useRef(null);
@@ -102,7 +103,7 @@ export default function AddScreen({ navigation }) {
   useEffect(() => {
     async function fetchCategories() {
       try {
-        const response = await axios.get("http://127.0.0.1:3001/api/category");
+        const response = await axios.get(`${IP}/category`);
         const categoriesFromApi = response.data;
 
         // Transformation des données reçues pour les adapter au format attendu
@@ -126,7 +127,7 @@ export default function AddScreen({ navigation }) {
     async function fetchSubCategories() {
       try {
         if (categoryValue) {
-          const response = await axios.get(`http://127.0.0.1:3001/api/category/${categoryValue}/sub_category`);
+          const response = await axios.get(`${IP}/sub_category/category/${categoryValue}/sub_category`);
           const subCategoriesFromApi = response.data;
 
           // Transformation des données reçues pour les adapter au format attendu

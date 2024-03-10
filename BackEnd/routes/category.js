@@ -6,8 +6,7 @@ module.exports = (db) => {
   router.get("/", (_, res) => {
     db.all("SELECT * FROM category", (err, rows) => {
       if (err) {
-        console.error(err);
-        res.status(500).json("Erreur lors de la récupération des catégories.");
+        res.status(500).json({"error": "Erreur lors de la récupération des catégories."});
       } else {
         res.json(rows);
       }
@@ -20,17 +19,16 @@ module.exports = (db) => {
 
     db.get("SELECT * FROM category WHERE id = ?", [categId], (err, row) => {
       if (err) {
-        console.error(err);
         res
           .status(500)
           .json(
-            `Erreur lors de la récupération de l'utilisateur avec l'ID ${categId}.`
-          );
+            "Erreur lors de la récupération de l'utilisateur avec cette id."
+          ); 
       } else {
         if (row) {
           res.json(row);
         } else {
-          res.status(404).json(`Utilisateur avec l'ID ${categId} non trouvé.`);
+          res.status(404).json("Erreur la categorie est introuvable");
         }
       }
     });

@@ -26,7 +26,7 @@ describe("Test pour récupérer toutes les catégories", () => {
       callback(null, mockCategory);
     });
 
-    const response = await request(app).get("/api/category/all");
+    const response = await request(app).get("/api/category");
 
     expect(response.status).toBe(200);
     expect(response.type).toMatch(/json/);
@@ -39,7 +39,7 @@ describe("Test pour récupérer toutes les catégories", () => {
       callback("Une erreur s'est produite lors de la récupération des catégories.");
     });
 
-    const response = await request(app).get("/api/category/all");
+    const response = await request(app).get("/api/category");
 
     expect(response.status).toBe(500);
     expect(response.type).toMatch(/json/);
@@ -63,7 +63,7 @@ describe("Test de la route pour récupérer une annonce ID", () => {
     expect(response.body).toEqual(mockCategory[0]);
   });
 
-  it("Devrait renvoyer une erreur 500 si une erreur survient lors de la récupération des utilisateurs", async () => {
+  it("Devrait renvoyer une erreur 500 si une erreur survient lors de la récupération des categorie", async () => {
     // Mock de la réponse de la base de données pour cet ensemble de tests
     mockDB.get.mockImplementation((query, params, callback) => {
       callback("Une erreur s'est produite lors de la récupération des annonces.");

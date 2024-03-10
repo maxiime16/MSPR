@@ -7,7 +7,9 @@ module.exports = (db) => {
     db.all("SELECT * FROM advice", (err, rows) => {
       if (err) {
         console.error(err);
-        res.status(500).json("Erreur lors de la récupération des conseils.");
+        res
+          .status(500)
+          .json({ error: "Erreur lors de la récupération des conseils." });
       } else {
         res.json(rows);
       }
@@ -23,9 +25,10 @@ module.exports = (db) => {
         console.error(err);
         res
           .status(500)
-          .json(
-            `Erreur lors de la récupération de la plante avec l'ID ${adviceId}.`
-          );
+          .json({
+            error:
+              "Une erreur s'est produite lors de la récupération des annonces par id.",
+          });
       } else {
         if (row) {
           res.json(row);
@@ -38,28 +41,23 @@ module.exports = (db) => {
 
   // Récupérer les conseils pour une annonce spécifique
   router.get("/advertisement/:id", (req, res) => {
-    const avertId = req.params.id;
-
+    const advertisementId = req.params.id;
     db.all(
       "SELECT Advice.*, Users.first_name, Users.last_name FROM Advice INNER JOIN Users ON Advice.user_id = Users.id WHERE Advice.advertisement_id = ?",
-      [avertId],
+      [advertisementId],
       (err, rows) => {
         if (err) {
-          console.error(err);
           res
-            .status(500)
-            .json(
-              `Erreur lors de la récupération des conseils pour la plante avec l'ID ${plantId}.`
-            );
+            .status(500).json(`Erreur lors de la récupération des conseils.`);
         } else {
-          res.json(rows);
+          res.status(200).json(rows);
         }
       }
     );
   });
 
-   // Ajouter un nouveau conseil
-   router.post("/create", (req, res) => {
+  // Ajouter un nouveau conseil
+  router.post("/create", (req, res) => {
     const { advertisement_id, user_id, advice } = req.body;
 
     // Vérifier que les données requises sont fournies

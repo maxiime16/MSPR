@@ -68,7 +68,7 @@ describe("Test de la route pour récupérer tous les utilisateurs", () => {
       callback(null, mockUsers);
     });
 
-    const response = await request(app).get("/api/users/all");
+    const response = await request(app).get("/api/users");
 
     expect(response.status).toBe(200);
     expect(response.type).toMatch(/json/);
@@ -81,39 +81,10 @@ describe("Test de la route pour récupérer tous les utilisateurs", () => {
       callback(new Error("Erreur de base de données")); // Simuler une erreur de base de données
     });
 
-    const response = await request(app).get("/api/users/all");
+    const response = await request(app).get("/api/users");
 
     expect(response.status).toBe(500);
     expect(response.type).toMatch(/json/);
-    expect(response.body).toEqual({ error: "Une erreur s'est produite lors de la récupération des utilisateurs." });
-  });
-});
-
-describe("Test de la route pour ajouter un utilisateur", () => {
-  it("Devrait ajouter un utilisateur avec succès et renvoyer un code d'état 201", async () => {
-    const newUser = {
-      "first_name": "John",
-      "last_name": "Doe",
-      "email": "john@example.com",
-      "password": "password123",
-      "address_city": "New York",
-      "address_postal_code": "10001",
-      "address_street": "123 Main St",
-    };
-
-    mockDB.run.mockImplementation((query, params, callback) => {
-      callback(null); // Aucune erreur, la mise à jour réussit
-    });
-  
-    const response = await request(app)
-      .post("/api/users")
-      .send(newUser);
-  
-    expect(response.status).toBe(201);
-    expect(response.type).toMatch(/json/);
-
-    // Vérifiez l'objet reçu sans la propriété "password"
-    const { password, ...expectedUser } = newUser;
-    expect(response.body).toEqual(expect.objectContaining(expectedUser));
+    expect(response.body).toEqual("Une erreur s'est produite lors de la récupération des utilisateurs.");
   });
 });

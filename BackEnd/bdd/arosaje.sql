@@ -5,9 +5,6 @@ CREATE TABLE Users (
     last_name TEXT,
     email TEXT,
     password TEXT,
-    address_city TEXT,
-    address_postal_code TEXT,
-    address_street TEXT
 );
 
 -- Table Category

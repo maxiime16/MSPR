@@ -38,7 +38,7 @@ describe("Test de la route pour récupérer les conseils ", () => {
       callback(null, mockAdvice);
     });
 
-    const response = await request(app).get("/api/advices/all");
+    const response = await request(app).get("/api/advices");
 
     expect(response.status).toBe(200);
     expect(response.type).toMatch(/json/);
@@ -52,7 +52,7 @@ describe("Test de la route pour récupérer les conseils ", () => {
       );
     });
 
-    const response = await request(app).get("/api/advices/all");
+    const response = await request(app).get("/api/advices");
 
     expect(response.status).toBe(500);
     console.log(response.body);
@@ -98,14 +98,14 @@ describe("Test de la route pour récupérer un conseil par annonce", () => {
   it("Devrait renvoyer une annonce existente existant au format JSON avec un code d'état 200", async () => {
     // Mock de la réponse de la base de données pour cet ensemble de tests
     mockDB.all.mockImplementation((query, params, callback) => {
-      callback(null,mockAdvice[0]);
+      callback(null,mockAdvice[1],mockAdvice[2]);
     });
 
-    const response = await request(app).get("/api/advices/advertisements/1");
+    const response = await request(app).get("/api/advices/advertisement/1");
 
     expect(response.status).toBe(200);
     expect(response.type).toMatch(/json/);
-    expect(response.body).toEqual(mockAdvice[0]);
+    expect(response.body).toEqual(mockAdvice[1],mockAdvice[2]);
   });
   it("Devrait renvoyer une annonce existente existant au format JSON avec un code d'état 500", async () => {
     // Mock de la réponse de la base de données pour cet ensemble de tests
@@ -113,7 +113,7 @@ describe("Test de la route pour récupérer un conseil par annonce", () => {
       callback("Erreur lors de la récupération");
     });
 
-    const response = await request(app).get("/api/advices/advertisements/1");
+    const response = await request(app).get("/api/advices/advertisement/1");
 
     expect(response.status).toBe(500);
     expect(response.type).toMatch(/json/);
