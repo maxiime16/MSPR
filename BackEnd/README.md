@@ -1,28 +1,20 @@
 # README back-end
 
-## Personnes qui ont fait le back-end
-- Enzo De Sousa
-- Maxime Devillepoix
+## Avant de commencer
+ - npm install
 
-## Info application back-end
-- Back-end en Nodejs
-- Utilisation d'une base de donnée SQLite
+## run le serveur
+ - node server.js
 
-## Install requis
-```
-npm install sqlite3 cors
-```
-## Run le serveur
-- node server.js
+## run les tests
+ - npx jest
+
+## build l'image docker et la run
+ - prérequis: avoir docker d'installer et d'ouvert
+ - docker build -t backend_mspr .
+ - docker run -d --name backend_mspr -p 3001:3001 backend_mspr
 
 ## Reinitialiser la base de donnée
 - Supprimer 'arosaje.db'
-- Commande: 'sqlite3 arosaje.db aides/BDD/arosaje.sql'
+- Commande: 'sqlite3 arosaje.db'
 - Lancer le serveur
-
-## Partie tests
-- npm install --save-dev jest supertest
-- npm install jest-mock-extended
-
-
-npx jest
