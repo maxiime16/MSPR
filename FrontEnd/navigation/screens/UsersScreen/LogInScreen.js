@@ -6,7 +6,7 @@ import { useAuth } from "../../../components/AuthContext";
 import ButtonEdit from "../../../components/button";
 
 const LogInScreen = ({ onLogin, onSignUp }) => {
-  const { isLoggedIn, login } = useAuth();
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");

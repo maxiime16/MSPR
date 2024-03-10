@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TextInput,
-  Button,
   StyleSheet,
 
 } from "react-native";
@@ -86,9 +85,6 @@ const SignUpScreen = ({ setIsSignUp }) => {
       });
   };
   
-  
-  
-
   return (
     <View style={styles.container}>
       <TextInput

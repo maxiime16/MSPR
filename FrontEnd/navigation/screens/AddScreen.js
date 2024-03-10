@@ -7,9 +7,7 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   Keyboard,
-  Image,
   KeyboardAvoidingView,
-  Button,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker"; // Image picker for import picture
 import * as FileSystem from 'expo-file-system'; // File system for use picture
@@ -54,7 +52,6 @@ export default function AddScreen({ navigation }) {
   
   const [formComplete, setFormComplete] = useState(false);
   const [submitButtonClicked, setSubmitButtonClicked] = useState(false);
-  const [showErrorState, setShowErrorState] = useState(false)
 
   const titleInputRef = useRef(null);
   const descriptionInputRef = useRef(null);

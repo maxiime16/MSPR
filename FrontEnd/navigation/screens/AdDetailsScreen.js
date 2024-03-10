@@ -4,7 +4,6 @@ import {
   Text,
   TextInput,
   ScrollView,
-  TouchableOpacity,
   StatusBar,
   ActivityIndicator,
   SafeAreaView,
@@ -21,7 +20,6 @@ import { useAuth } from "../../components/AuthContext";
 
 const IP = IP_Server;
 const windowDimensions = Dimensions.get("window");
-const ONE_KM_IN_DEGREE = 0.009;
 
 const AdDetailsScreen = () => {
   const route = useRoute();

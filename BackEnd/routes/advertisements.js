@@ -50,7 +50,7 @@ module.exports = (db) => {
       function (err) {
         if (err) {
           console.error(err);
-          res.status(500).json("Erreur lors de l'insertion de l'annonce.");
+          res.status(500).json({"details": "Erreur simulée lors de l'insertion", "error": "Erreur lors de l'insertion de l'annonce."});
         } else {
           // Renvoyer l'ID de la nouvelle annonce insérée
           res.json({
@@ -98,7 +98,7 @@ module.exports = (db) => {
       (err, rows) => {
         if (err) {
           console.error(err);
-          res.status(500).json("Erreur lors de la récupération des annonces.");
+          res.status(500).json({"error": "Une erreur s'est produite lors de la récupération des annonces par id."});
         } else {
           res.json(rows);
         }
