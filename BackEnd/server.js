@@ -25,7 +25,7 @@ const advertisementsRoutes = require("./routes/advertisements")(db);
 app.use("/api/advertisements", advertisementsRoutes);
 
 const advicesRoutes = require("./routes/advices")(db);
-app.use("/api/", advicesRoutes);
+app.use("/api/advices", advicesRoutes);
 
 const imagesRoutes = require("./routes/images")(db);
 app.use("/api/images", imagesRoutes);

@@ -3,7 +3,7 @@ const router = express.Router();
 
 module.exports = (db) => {
   // Récupérer tout les conseils
-  router.get("/advices", (_, res) => {
+  router.get("/", (_, res) => {
     db.all("SELECT * FROM advice", (err, rows) => {
       if (err) {
         console.error(err);
@@ -37,7 +37,7 @@ module.exports = (db) => {
   });
 
   // Récupérer les conseils pour une annonce spécifique
-  router.get("/advices/advertisement/:id", (req, res) => {
+  router.get("/advertisement/:id", (req, res) => {
     const avertId = req.params.id;
 
     db.all(
@@ -59,7 +59,7 @@ module.exports = (db) => {
   });
 
    // Ajouter un nouveau conseil
-   router.post("/advices/create", (req, res) => {
+   router.post("/create", (req, res) => {
     const { advertisement_id, user_id, advice } = req.body;
 
     // Vérifier que les données requises sont fournies
